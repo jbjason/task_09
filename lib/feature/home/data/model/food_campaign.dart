@@ -1,6 +1,6 @@
 import 'package:task_09/core/error/safe_parse.dart';
 
-class CampaignItem {
+class FoodCampaign {
   int id;
   String image;
   String description;
@@ -52,7 +52,7 @@ class CampaignItem {
   List<Translation> translations;
   List<Storage> storage;
 
-  CampaignItem({
+  FoodCampaign({
     required this.id,
     required this.image,
     required this.description,
@@ -105,7 +105,7 @@ class CampaignItem {
     required this.storage,
   });
 
-  factory CampaignItem.fromJson(Map<String, dynamic> json) => CampaignItem(
+  factory FoodCampaign.fromJson(Map<String, dynamic> json) => FoodCampaign(
     id: safeParse<int>(json["id"], 'id')!,
     image: safeParse<String>(json["image"], 'image')!,
     description: safeParse<String>(json["description"], 'description')!,

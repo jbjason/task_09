@@ -1,19 +1,19 @@
 import 'package:task_09/core/error/safe_parse.dart';
 
-class PopularItem {
+class PopularProduct {
   int totalSize;
   dynamic limit;
   dynamic offset;
   List<Product> products;
 
-  PopularItem({
+  PopularProduct({
     required this.totalSize,
     required this.limit,
     required this.offset,
     required this.products,
   });
 
-  factory PopularItem.fromJson(Map<String, dynamic> json) => PopularItem(
+  factory PopularProduct.fromJson(Map<String, dynamic> json) => PopularProduct(
     totalSize: safeParse<int>(json["total_size"], 'total_size')!,
     limit: json["limit"],
     offset: json["offset"],
@@ -393,7 +393,7 @@ class NutritionPivot {
 }
 
 class Variation {
-  int variationId;
+  int? variationId;
   String name;
   String type;
   String min;
@@ -412,7 +412,8 @@ class Variation {
   });
 
   factory Variation.fromJson(Map<String, dynamic> json) => Variation(
-    variationId: safeParse<int>(json["variation_id"], 'variation_id')!,
+    variationId:
+        json["variation_id"], // safeParse<int?>(json["variation_id"], 'variation_id')!,
     name: safeParse<String>(json["name"], 'name')!,
     type: safeParse<String>(json["type"], 'type')!,
     min: safeParse<String>(json["min"], 'min')!,
@@ -428,8 +429,8 @@ class Value {
   String totalStock;
   String stockType;
   String sellCount;
-  int optionId;
-  int currentStock;
+  int? optionId;
+  int? currentStock;
 
   Value({
     required this.label,
@@ -447,7 +448,9 @@ class Value {
     totalStock: safeParse<String>(json["total_stock"], 'total_stock')!,
     stockType: safeParse<String>(json["stock_type"], 'stock_type')!,
     sellCount: safeParse<String>(json["sell_count"], 'sell_count')!,
-    optionId: safeParse<int>(json["option_id"], 'option_id')!,
-    currentStock: safeParse<int>(json["current_stock"], 'current_stock')!,
+    optionId:
+        json["option_id"], // safeParse<int?>(json["option_id"], 'option_id')!,
+    currentStock:
+        json["current_stock"], // safeParse<int?>(json["current_stock"], 'current_stock')!,
   );
 }

@@ -1,36 +1,32 @@
 import 'package:task_09/core/error/safe_parse.dart';
 
-class Banner {
-  int id;
-  String title;
-  String type;
-  String image;
-  Restaurant restaurant;
-  dynamic food;
-  String imageFullUrl;
+class HomeRestaurant {
+  String filterData;
+  int totalSize;
+  String limit;
+  String offset;
+  List<RestaurantElement> restaurants;
 
-  Banner({
-    required this.id,
-    required this.title,
-    required this.type,
-    required this.image,
-    required this.restaurant,
-    required this.food,
-    required this.imageFullUrl,
+  HomeRestaurant({
+    required this.filterData,
+    required this.totalSize,
+    required this.limit,
+    required this.offset,
+    required this.restaurants,
   });
 
-  factory Banner.fromJson(Map<String, dynamic> json) => Banner(
-    id: json["id"],
-    title: json["title"],
-    type: json["type"],
-    image: json["image"],
-    restaurant: Restaurant.fromJson(json["restaurant"]),
-    food: json["food"],
-    imageFullUrl: json["image_full_url"],
+  factory HomeRestaurant.fromJson(Map<String, dynamic> json) => HomeRestaurant(
+    filterData: safeParse<String>(json["filter_data"], 'filter_data')!,
+    totalSize: safeParse<int>(json["total_size"], 'total_size')!,
+    limit: safeParse<String>(json["limit"], 'limit')!,
+    offset: safeParse<String>(json["offset"], 'offset')!,
+    restaurants: List<RestaurantElement>.from(
+      json["restaurants"].map((x) => RestaurantElement.fromJson(x)),
+    ),
   );
 }
 
-class Restaurant {
+class RestaurantElement {
   int id;
   String name;
   String phone;
@@ -85,34 +81,44 @@ class Restaurant {
   dynamic tin;
   dynamic tinExpireDate;
   dynamic tinCertificateImage;
-  int restaurantStatus;
+  int open;
+  double distance;
+  int foodsCount;
+  int reviewsCommentsCount;
   List<Food> foods;
-  List<int> ratings;
+  int priceStartsFrom;
+  List<dynamic> coupons;
+  String deliveryFee;
+  int restaurantStatus;
+  List<dynamic> cuisine;
+  List<dynamic> ratings;
   int avgRating;
   int ratingCount;
   int positiveRating;
-  int priceStartsFrom;
   int customerOrderDate;
   bool customerDateOrderSratus;
   bool instantOrder;
   bool halalTagStatus;
+  String currentOpeningTime;
   bool isExtraPackagingActive;
   bool extraPackagingStatus;
   int extraPackagingAmount;
-  String deliveryFee;
-  String currentOpeningTime;
   bool isDineInActive;
+  bool canEditOrder;
   int scheduleAdvanceDineInBookingDuration;
   String scheduleAdvanceDineInBookingDurationTimeFormat;
-  bool canEditOrder;
+  List<dynamic> characteristics;
   bool gstStatus;
   String gstCode;
   bool freeDeliveryDistanceStatus;
   String freeDeliveryDistanceValue;
   String logoFullUrl;
   String coverPhotoFullUrl;
+  dynamic metaImageFullUrl;
+  dynamic tinCertificateImageFullUrl;
+  dynamic discount;
 
-  Restaurant({
+  RestaurantElement({
     required this.id,
     required this.name,
     required this.phone,
@@ -167,35 +173,47 @@ class Restaurant {
     required this.tin,
     required this.tinExpireDate,
     required this.tinCertificateImage,
-    required this.restaurantStatus,
+    required this.open,
+    required this.distance,
+    required this.foodsCount,
+    required this.reviewsCommentsCount,
     required this.foods,
+    required this.priceStartsFrom,
+    required this.coupons,
+    required this.deliveryFee,
+    required this.restaurantStatus,
+    required this.cuisine,
     required this.ratings,
     required this.avgRating,
     required this.ratingCount,
     required this.positiveRating,
-    required this.priceStartsFrom,
     required this.customerOrderDate,
     required this.customerDateOrderSratus,
     required this.instantOrder,
     required this.halalTagStatus,
+    required this.currentOpeningTime,
     required this.isExtraPackagingActive,
     required this.extraPackagingStatus,
     required this.extraPackagingAmount,
-    required this.deliveryFee,
-    required this.currentOpeningTime,
     required this.isDineInActive,
+    required this.canEditOrder,
     required this.scheduleAdvanceDineInBookingDuration,
     required this.scheduleAdvanceDineInBookingDurationTimeFormat,
-    required this.canEditOrder,
+    required this.characteristics,
     required this.gstStatus,
     required this.gstCode,
     required this.freeDeliveryDistanceStatus,
     required this.freeDeliveryDistanceValue,
     required this.logoFullUrl,
     required this.coverPhotoFullUrl,
+    required this.metaImageFullUrl,
+    required this.tinCertificateImageFullUrl,
+    required this.discount,
   });
 
-  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+  factory RestaurantElement.fromJson(
+    Map<String, dynamic> json,
+  ) => RestaurantElement(
     id: safeParse<int>(json["id"], 'id')!,
     name: safeParse<String>(json["name"], 'name')!,
     phone: safeParse<String>(json["phone"], 'phone')!,
@@ -204,12 +222,12 @@ class Restaurant {
     latitude: safeParse<String>(json["latitude"], 'latitude')!,
     longitude: safeParse<String>(json["longitude"], 'longitude')!,
     address: safeParse<String>(json["address"], 'address')!,
-    footerText: safeParse<String>(json["footer_text"], 'footer_text')!,
+    footerText: json["footer_text"],
     minimumOrder: safeParse<int>(json["minimum_order"], 'minimum_order')!,
-    comission: safeParse<double>(json["comission"], 'comission')!,
+    comission: json["comission"],
     scheduleOrder: safeParse<bool>(json["schedule_order"], 'schedule_order')!,
-    openingTime: safeParse<String>(json["opening_time"], 'opening_time')!,
-    closeingTime: safeParse<String>(json["closeing_time"], 'closeing_time')!,
+    openingTime: json["opening_time"],
+    closeingTime: json["closeing_time"],
     status: safeParse<int>(json["status"], 'status')!,
     vendorId: safeParse<int>(json["vendor_id"], 'vendor_id')!,
     createdAt: DateTime.parse(
@@ -223,7 +241,7 @@ class Restaurant {
     delivery: safeParse<bool>(json["delivery"], 'delivery')!,
     takeAway: safeParse<bool>(json["take_away"], 'take_away')!,
     foodSection: safeParse<bool>(json["food_section"], 'food_section')!,
-    tax: safeParse<int>(json["tax"], 'tax')!,
+    tax: safeParse<int>(json["tax"].toInt(), 'tax')!,
     zoneId: safeParse<int>(json["zone_id"], 'zone_id')!,
     reviewsSection: safeParse<bool>(
       json["reviews_section"],
@@ -245,64 +263,59 @@ class Restaurant {
     nonVeg: safeParse<int>(json["non_veg"], 'non_veg')!,
     orderCount: safeParse<int>(json["order_count"], 'order_count')!,
     totalOrder: safeParse<int>(json["total_order"], 'total_order')!,
-    perKmShippingCharge: safeParse<double>(
-      json["per_km_shipping_charge"],
-      'per_km_shipping_charge',
-    )!,
+    perKmShippingCharge: json["per_km_shipping_charge"],
     restaurantModel: safeParse<String>(
       json["restaurant_model"],
       'restaurant_model',
     )!,
-    maximumShippingCharge: safeParse<double>(
-      json["maximum_shipping_charge"],
-      'maximum_shipping_charge',
-    )!,
+    maximumShippingCharge: json["maximum_shipping_charge"],
     slug: safeParse<String>(json["slug"], 'slug')!,
     orderSubscriptionActive: safeParse<bool>(
       json["order_subscription_active"],
       'order_subscription_active',
     )!,
     cutlery: safeParse<bool>(json["cutlery"], 'cutlery')!,
-    metaTitle: safeParse<String>(json["meta_title"], 'meta_title')!,
-    metaDescription: safeParse<String>(
-      json["meta_description"],
-      'meta_description',
-    )!,
-    metaImage: safeParse<String>(json["meta_image"], 'meta_image')!,
+    metaTitle: json["meta_title"],
+    metaDescription: json["meta_description"],
+    metaImage: json["meta_image"],
     announcement: safeParse<int>(json["announcement"], 'announcement')!,
     announcementMessage: safeParse<String>(
       json["announcement_message"],
       'announcement_message',
     )!,
-    qrCode: safeParse<String>(json["qr_code"], 'qr_code')!,
+    qrCode: json["qr_code"],
     additionalData: json["additional_data"],
-    additionalDocuments: json["additional_documents"],
-    packageId: safeParse<int>(json["package_id"], 'package_id')!,
-    tin: safeParse<String>(json["tin"], 'tin')!,
-    tinExpireDate: json["tin_expire_date"] != null
-        ? DateTime.parse(
-            safeParse<String>(json["tin_expire_date"], 'tin_expire_date')!,
-          )
-        : null,
-    tinCertificateImage: safeParse<String>(
-      json["tin_certificate_image"],
-      'tin_certificate_image',
+    additionalDocuments: safeParse<String>(
+      json["additional_documents"],
+      'additional_documents',
     )!,
-    restaurantStatus: safeParse<int>(
-      json["restaurant_status"],
-      'restaurant_status',
+    packageId: json["package_id"],
+    tin: json["tin"],
+    tinExpireDate: json["tin_expire_date"],
+    tinCertificateImage: json["tin_certificate_image"],
+    open: safeParse<int>(json["open"], 'open')!,
+    distance: safeParse<double>(json["distance"], 'distance')!,
+    foodsCount: safeParse<int>(json["foods_count"], 'foods_count')!,
+    reviewsCommentsCount: safeParse<int>(
+      json["reviews_comments_count"],
+      'reviews_comments_count',
     )!,
     foods: List<Food>.from(json["foods"].map((x) => Food.fromJson(x))),
-    ratings: List<int>.from(
-      json["ratings"].map((x) => safeParse<int>(x, 'ratings_element')!),
-    ),
-    avgRating: safeParse<int>(json["avg_rating"], 'avg_rating')!,
-    ratingCount: safeParse<int>(json["rating_count"], 'rating_count')!,
-    positiveRating: safeParse<int>(json["positive_rating"], 'positive_rating')!,
     priceStartsFrom: safeParse<int>(
       json["price_starts_from"],
       'price_starts_from',
     )!,
+    coupons: List<dynamic>.from(json["coupons"].map((x) => x)),
+    deliveryFee: safeParse<String>(json["delivery_fee"], 'delivery_fee')!,
+    restaurantStatus: safeParse<int>(
+      json["restaurant_status"],
+      'restaurant_status',
+    )!,
+    cuisine: List<dynamic>.from(json["cuisine"].map((x) => x)),
+    ratings: List<dynamic>.from(json["ratings"].map((x) => x)),
+    avgRating: safeParse<int>(json["avg_rating"].toInt(), 'avg_rating')!,
+    ratingCount: safeParse<int>(json["rating_count"], 'rating_count')!,
+    positiveRating: safeParse<int>(json["positive_rating"], 'positive_rating')!,
     customerOrderDate: safeParse<int>(
       json["customer_order_date"],
       'customer_order_date',
@@ -316,6 +329,10 @@ class Restaurant {
       json["halal_tag_status"],
       'halal_tag_status',
     )!,
+    currentOpeningTime: safeParse<String>(
+      json["current_opening_time"],
+      'current_opening_time',
+    )!,
     isExtraPackagingActive: safeParse<bool>(
       json["is_extra_packaging_active"],
       'is_extra_packaging_active',
@@ -328,15 +345,11 @@ class Restaurant {
       json["extra_packaging_amount"],
       'extra_packaging_amount',
     )!,
-    deliveryFee: safeParse<String>(json["delivery_fee"], 'delivery_fee')!,
-    currentOpeningTime: safeParse<String>(
-      json["current_opening_time"],
-      'current_opening_time',
-    )!,
     isDineInActive: safeParse<bool>(
       json["is_dine_in_active"],
       'is_dine_in_active',
     )!,
+    canEditOrder: safeParse<bool>(json["can_edit_order"], 'can_edit_order')!,
     scheduleAdvanceDineInBookingDuration: safeParse<int>(
       json["schedule_advance_dine_in_booking_duration"],
       'schedule_advance_dine_in_booking_duration',
@@ -345,7 +358,7 @@ class Restaurant {
       json["schedule_advance_dine_in_booking_duration_time_format"],
       'schedule_advance_dine_in_booking_duration_time_format',
     )!,
-    canEditOrder: safeParse<bool>(json["can_edit_order"], 'can_edit_order')!,
+    characteristics: List<dynamic>.from(json["characteristics"].map((x) => x)),
     gstStatus: safeParse<bool>(json["gst_status"], 'gst_status')!,
     gstCode: safeParse<String>(json["gst_code"], 'gst_code')!,
     freeDeliveryDistanceStatus: safeParse<bool>(
@@ -361,6 +374,9 @@ class Restaurant {
       json["cover_photo_full_url"],
       'cover_photo_full_url',
     )!,
+    metaImageFullUrl: json["meta_image_full_url"],
+    tinCertificateImageFullUrl: json["tin_certificate_image_full_url"],
+    discount: json["discount"],
   );
 }
 
@@ -369,12 +385,16 @@ class Food {
   String image;
   String name;
   String imageFullUrl;
+  List<dynamic> storage;
+  List<Translation> translations;
 
   Food({
     required this.id,
     required this.image,
     required this.name,
     required this.imageFullUrl,
+    required this.storage,
+    required this.translations,
   });
 
   factory Food.fromJson(Map<String, dynamic> json) => Food(
@@ -382,5 +402,48 @@ class Food {
     image: safeParse<String>(json["image"], 'image')!,
     name: safeParse<String>(json["name"], 'name')!,
     imageFullUrl: safeParse<String>(json["image_full_url"], 'image_full_url')!,
+    storage: List<dynamic>.from(json["storage"].map((x) => x)),
+    translations: List<Translation>.from(
+      json["translations"].map((x) => Translation.fromJson(x)),
+    ),
+  );
+}
+
+class Translation {
+  int id;
+  String translationableType;
+  int translationableId;
+  String locale;
+  String key;
+  String value;
+  dynamic createdAt;
+  dynamic updatedAt;
+
+  Translation({
+    required this.id,
+    required this.translationableType,
+    required this.translationableId,
+    required this.locale,
+    required this.key,
+    required this.value,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Translation.fromJson(Map<String, dynamic> json) => Translation(
+    id: safeParse<int>(json["id"], 'id')!,
+    translationableType: safeParse<String>(
+      json["translationable_type"],
+      'translationable_type',
+    )!,
+    translationableId: safeParse<int>(
+      json["translationable_id"],
+      'translationable_id',
+    )!,
+    locale: safeParse<String>(json["locale"], 'locale')!,
+    key: safeParse<String>(json["key"], 'key')!,
+    value: safeParse<String>(json["value"], 'value')!,
+    createdAt: json["created_at"],
+    updatedAt: json["updated_at"],
   );
 }

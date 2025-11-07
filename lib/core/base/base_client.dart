@@ -34,7 +34,7 @@ class BaseClient {
         data: body ?? jsonEncode({}),
         options: options ?? Options(headers: header),
       );
-      Logger().t(response.data);
+      Logger().t("\x1B[95mResponse status code: ${response.statusCode}");
       if (response.statusCode == 200) return response.data;
       MyDialog().showFailedToast(msg: MyString.errorMsg, context: ctx);
     } on DioException catch (e) {
@@ -65,7 +65,7 @@ class BaseClient {
         data: body ?? jsonEncode({}),
         options: options ?? Options(headers: header),
       );
-      Logger().t(response.data);
+      Logger().t("\x1B[95mResponse status code: ${response.statusCode}");
       if (response.statusCode == 200) return response.data;
       MyDialog().showFailedToast(msg: MyString.errorMsg, context: ctx);
     } on DioException catch (e) {
@@ -96,7 +96,7 @@ class BaseClient {
         data: body ?? jsonEncode({}),
         options: options ?? Options(headers: header),
       );
-      Logger().t(response.data);
+      Logger().t("\x1B[95mResponse status code: ${response.statusCode}");
       if (response.statusCode == 200) return response.data;
       MyDialog().showFailedToast(msg: MyString.errorMsg, context: ctx);
     } on DioException catch (e) {
@@ -128,7 +128,7 @@ class BaseClient {
         data: body ?? jsonEncode({}),
         options: options ?? Options(headers: header),
       );
-      Logger().t(response.data);
+      Logger().t("\x1B[95mResponse status code: ${response.statusCode}");
       if (response.statusCode == 200) return response.data;
       MyDialog().showFailedToast(msg: MyString.errorMsg, context: ctx);
     } on DioException catch (e) {
@@ -159,7 +159,7 @@ class BaseClient {
         data: body,
         options: options ?? Options(headers: header),
       );
-      Logger().t(response.data);
+      Logger().t("\x1B[95mResponse status code: ${response.statusCode}");
       if (response.statusCode == 200) return response.data;
       MyDialog().showFailedToast(msg: MyString.errorMsg, context: ctx);
     } on DioException catch (e) {

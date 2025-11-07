@@ -6,7 +6,7 @@ class MyApiUrl {
 
   static const String banner = "banners";
   static const String category = "categories";
-  static const String popularFood = "products/popular";
+  static const String popularProduct = "products/popular";
   static const String foodCampaign = "campaigns/item";
   static const String restaurants = "restaurants/get-restaurants/all";
 }
