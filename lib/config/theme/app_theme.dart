@@ -1,135 +1,330 @@
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/constants/my_string.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AppTheme {
   static final visualDensity = VisualDensity.adaptivePlatformDensity;
 
-  /// Light theme and its settings.
   static ThemeData light() => ThemeData(
-        visualDensity: visualDensity,
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            color: MyColor.textColor,
+    visualDensity: visualDensity,
+    primaryColor: MyColor.black,
+    scaffoldBackgroundColor: MyColor.white,
+    cardColor: MyColor.gray100,
+    iconTheme: const IconThemeData(color: MyColor.gray800),
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      iconTheme: IconThemeData(color: MyColor.gray600, size: 20.w),
+      backgroundColor: MyColor.white,
+      titleTextStyle: TextStyle(
+        color: MyColor.black,
+        fontSize: 16.sp,
+        fontFamily: MyString.poppinsMedium,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+    colorScheme: ColorScheme.light(
+      primary: MyColor.black,
+      secondary: MyColor.gray600,
+      surface: MyColor.white,
+      background: MyColor.white,
+      onPrimary: MyColor.white,
+      onSecondary: MyColor.white,
+      onSurface: MyColor.black,
+      onBackground: MyColor.black,
+    ),
+    textTheme: TextTheme(
+      displayLarge: TextStyle(
+        color: MyColor.black,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 32.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      displayMedium: TextStyle(
+        color: MyColor.black,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      displaySmall: TextStyle(
+        color: MyColor.black,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      titleLarge: TextStyle(
+        color: MyColor.black,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      titleMedium: TextStyle(
+        color: MyColor.black,
+        fontSize: 16.sp,
+        fontFamily: MyString.poppinsMedium,
+        fontWeight: FontWeight.w500,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.black,
+        fontFamily: MyString.poppinsRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyLarge: TextStyle(
+        fontSize: 16.sp,
+        color: MyColor.black,
+        fontFamily: MyString.rubikRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.black,
+        fontFamily: MyString.rubikRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 10.sp,
+        color: MyColor.black,
+        fontFamily: MyString.rubikRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      labelLarge: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.gray600,
+        fontFamily: MyString.poppinsMedium,
+        fontWeight: FontWeight.w500,
+      ),
+      labelMedium: TextStyle(
+        fontSize: 12.sp,
+        color: MyColor.gray500,
+        fontFamily: MyString.poppinsRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      labelSmall: TextStyle(
+        fontSize: 10.sp,
+        color: MyColor.gray400,
+        fontFamily: MyString.poppinsRegular,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.gray600,
+        fontWeight: FontWeight.w400,
+      ),
+      hintStyle: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.gray500,
+        letterSpacing: 1.2,
+        fontWeight: FontWeight.w400,
+      ),
+      isDense: true,
+      filled: true,
+      prefixIconColor: MyColor.gray500,
+      fillColor: MyColor.white,
+      contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 18.w),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.black, width: 1.5.w),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.white, width: 1.0.w),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.error, width: 1.5.w),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.error, width: 1.5.w),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.r)),
+        ),
+        padding: WidgetStateProperty.all(
+          EdgeInsets.symmetric(vertical: 16.h, horizontal: 24.w),
+        ),
+        backgroundColor: WidgetStateProperty.all(MyColor.black),
+        foregroundColor: WidgetStateProperty.all(MyColor.white),
+        textStyle: WidgetStateProperty.all(
+          TextStyle(
+            fontSize: 16.sp,
             fontFamily: MyString.poppinsMedium,
-            fontSize: 28,
+            fontWeight: FontWeight.w600,
           ),
-          titleMedium: TextStyle(
-            color: MyColor.textColor,
-            fontSize: 16,
+        ),
+        elevation: WidgetStateProperty.all(0),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: WidgetStateProperty.all(MyColor.black),
+        textStyle: WidgetStateProperty.all(
+          TextStyle(
+            fontSize: 14.sp,
             fontFamily: MyString.poppinsMedium,
-          ),
-          titleSmall: TextStyle(
-            fontSize: 12,
-            color: MyColor.textColor,
-            fontFamily: MyString.poppinsRegular,
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 14,
-            color: MyColor.textColor,
-            fontFamily: MyString.rubikRegular,
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 11,
-            color: MyColor.textColor,
-            fontFamily: MyString.rubikRegular,
-          ),
-          bodySmall: TextStyle(
-            fontSize: 10,
-            color: MyColor.textColor,
-            fontFamily: MyString.rubikRegular,
+            fontWeight: FontWeight.w500,
           ),
         ),
-        scaffoldBackgroundColor: Colors.white,
-        cardColor: MyColor.cardLight,
-        iconTheme: const IconThemeData(color: MyColor.iconDark),
-        appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(color: MyColor.textThird, size: 20),
-          backgroundColor: Colors.white,
-          titleTextStyle: TextStyle(
-            color: MyColor.textColor,
-            fontSize: 13.5,
-            fontFamily: MyString.poppinsMedium,
-          ),
-        ),
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: MyColor.primary,
-          accentColor: MyColor.primaryAccent,
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          labelStyle: TextStyle(fontSize: 12, color: MyColor.textThird),
-          hintStyle: TextStyle(
-              fontSize: 12, color: MyColor.textThird, letterSpacing: 1.2),
-          isDense: true,
-          filled: true,
-          prefixIconColor: MyColor.textThird,
-          fillColor: MyColor.cardBackgroundColor,
-          contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-            borderSide: BorderSide(color: MyColor.inActiveColor, width: 0.3),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-            borderSide: BorderSide(color: MyColor.inActiveColor, width: 0.3),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-            borderSide: BorderSide(color: Colors.red),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-            borderSide: BorderSide(color: Colors.red),
-          ),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-            ),
-            padding: WidgetStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 10),
-            ),
-            backgroundColor: WidgetStateProperty.all(MyColor.bluePrimary),
-            foregroundColor: WidgetStateProperty.all(Colors.white),
-          ),
-        ),
-      );
+      ),
+    ),
+
+    dividerTheme: DividerThemeData(
+      color: MyColor.gray300,
+      thickness: 1.0.w,
+      space: 1.0.h,
+    ),
+  );
 
   /// Dark theme and its settings.
-  static ThemeData dark() => ThemeData().copyWith(
-        visualDensity: visualDensity,
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            color: MyColor.textLigth,
-            fontSize: 17,
-          ),
-          titleMedium: TextStyle(
-            color: MyColor.textLigth,
-            fontSize: 11,
-            letterSpacing: 0.3,
-          ),
-          bodyLarge: TextStyle(
-            fontSize: 11,
-            color: MyColor.textFaded,
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 11,
-            color: MyColor.textFaded,
-          ),
-          bodySmall: TextStyle(
-            fontSize: 11,
-            color: MyColor.textFaded,
+  static ThemeData dark() => ThemeData.dark().copyWith(
+    visualDensity: visualDensity,
+    primaryColor: MyColor.white,
+    scaffoldBackgroundColor: MyColor.gray900,
+    cardColor: MyColor.gray800,
+    iconTheme: const IconThemeData(color: MyColor.gray300),
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      iconTheme: IconThemeData(color: MyColor.gray300, size: 20.w),
+      backgroundColor: MyColor.gray900,
+      titleTextStyle: TextStyle(
+        color: MyColor.white,
+        fontSize: 16.sp,
+        fontFamily: MyString.poppinsMedium,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+    colorScheme: ColorScheme.dark(
+      primary: MyColor.white,
+      secondary: MyColor.gray400,
+      surface: MyColor.gray800,
+      background: MyColor.gray900,
+      onPrimary: MyColor.black,
+      onSecondary: MyColor.black,
+      onSurface: MyColor.white,
+      onBackground: MyColor.white,
+    ),
+    textTheme: TextTheme(
+      displayLarge: TextStyle(
+        color: MyColor.white,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 32.sp,
+        fontWeight: FontWeight.w700,
+      ),
+      displayMedium: TextStyle(
+        color: MyColor.white,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      displaySmall: TextStyle(
+        color: MyColor.white,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      titleLarge: TextStyle(
+        color: MyColor.white,
+        fontFamily: MyString.poppinsMedium,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      titleMedium: TextStyle(
+        color: MyColor.white,
+        fontSize: 16.sp,
+        fontFamily: MyString.poppinsMedium,
+        fontWeight: FontWeight.w500,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.gray400,
+        fontFamily: MyString.poppinsRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyLarge: TextStyle(
+        fontSize: 16.sp,
+        color: MyColor.gray300,
+        fontFamily: MyString.rubikRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.gray400,
+        fontFamily: MyString.rubikRegular,
+        fontWeight: FontWeight.w400,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 12.sp,
+        color: MyColor.gray500,
+        fontFamily: MyString.rubikRegular,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.gray400,
+        fontWeight: FontWeight.w400,
+      ),
+      hintStyle: TextStyle(
+        fontSize: 14.sp,
+        color: MyColor.gray500,
+        letterSpacing: 1.2,
+        fontWeight: FontWeight.w400,
+      ),
+      isDense: true,
+      filled: true,
+      prefixIconColor: MyColor.gray500,
+      fillColor: MyColor.gray800,
+      contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 18.w),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.white, width: 1.5.w),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.gray700, width: 1.0.w),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.error, width: 1.5.w),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(7.r)),
+        borderSide: BorderSide(color: MyColor.error, width: 1.5.w),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.r)),
+        ),
+        padding: WidgetStateProperty.all(
+          EdgeInsets.symmetric(vertical: 16.h, horizontal: 24.w),
+        ),
+        backgroundColor: WidgetStateProperty.all(MyColor.white),
+        foregroundColor: WidgetStateProperty.all(MyColor.black),
+        textStyle: WidgetStateProperty.all(
+          TextStyle(
+            fontSize: 16.sp,
+            fontFamily: MyString.poppinsMedium,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        scaffoldBackgroundColor: const Color(0xFF1B1E1F),
-        cardColor: MyColor.cardDark,
-        iconTheme: const IconThemeData(color: MyColor.iconLight),
-        colorScheme: ThemeData()
-            .colorScheme
-            .copyWith(secondary: MyColor.accent)
-            .copyWith(surface: const Color(0xFF1B1E1F)),
-      );
+        elevation: WidgetStateProperty.all(0),
+      ),
+    ),
+
+    dividerTheme: DividerThemeData(
+      color: MyColor.gray700,
+      thickness: 1.0.w,
+      space: 1.0.h,
+    ),
+  );
 }

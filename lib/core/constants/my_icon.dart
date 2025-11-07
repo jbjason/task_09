@@ -11,4 +11,5 @@ class MyIcon {
   static const String user2 = "assets/icons/user2.png";
 
   static const String settings = "assets/icons/settings.png";
+  static const String notification = "assets/icons/notification.png";
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:task_09/config/extension/media_query_extension.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_09/core/constants/my_constants.dart';
+import 'package:task_09/feature/home/prensentation/widget/home_navbar_cart_button.dart';
 
 class HomeNavbar extends StatelessWidget {
   const HomeNavbar({
@@ -13,33 +14,41 @@ class HomeNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = MyConstants.navItemImages;
-    final itemWidth = context.screenWidth / items.length;
+    final itemWidth = 75.w, navBarHeight = 56.h;
     return SizedBox(
-      height: kBottomNavigationBarHeight * 1.5,
+      height: navBarHeight,
       child: Row(
-        children: List.generate(
-          items.length,
-          (i) => _getNavBarItem(
-            index: i,
-            image: currentPage == i
-                ? MyConstants.navItemSelectedImages[i]
-                : MyConstants.navItemImages[i],
-            // color: currentPage == i ? Colors.green : Colors.grey,
-            width: itemWidth,
+        children: [
+          //home icon
+          _getNavBarItem(index: 0, width: itemWidth),
+          // message icon
+          _getNavBarItem(index: 1, width: itemWidth),
+          // cart icon button
+          Expanded(
+            child: HomeNavbarCartButton(
+              itemWidth: itemWidth,
+              bottomHeight: navBarHeight / 2,
+            ),
           ),
-        ),
+          // file icon
+          _getNavBarItem(index: 2, width: itemWidth),
+          // people icon
+          _getNavBarItem(index: 3, width: itemWidth),
+        ],
       ),
     );
   }
 
-  Widget _getNavBarItem({
-    required int index,
-    required String image,
-    // required Color color,
-    required double width,
-  }) => GestureDetector(
-    onTap: () => onPageChange(index),
-    child: SizedBox(width: width, child: Image.asset(image)),
-  );
+  Widget _getNavBarItem({required int index, required double width}) =>
+      GestureDetector(
+        onTap: () => onPageChange(index),
+        child: SizedBox(
+          width: width,
+          child: Image.asset(
+            currentPage == index
+                ? MyConstants.navItemSelectedImages[index]
+                : MyConstants.navItemImages[index],
+          ),
+        ),
+      );
 }
