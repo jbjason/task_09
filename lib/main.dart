@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:task_09/config/theme/app_theme.dart';
 import 'package:task_09/feature/home/data/repository/home_repository.dart';
+import 'package:task_09/feature/home/prensentation/page/home.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 void main() {
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           title: 'Task 09',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.light(),
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          home: Home(),
         ),
       ),
     );
