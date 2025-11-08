@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
-import 'package:task_09/core/constants/my_constants.dart';
 import 'package:task_09/core/util/my_dimens.dart';
 import 'package:task_09/feature/home/domain/entities/home_banner_entity.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
@@ -39,7 +38,7 @@ class _HomeBannersState extends State<HomeBanners> {
                 : _getPageView(items),
           ),
           // counters
-          _getCounter,
+          _getCounter(items.length),
         ],
       ),
     );
@@ -65,10 +64,10 @@ class _HomeBannersState extends State<HomeBanners> {
     );
   }
 
-  Row get _getCounter => Row(
+  Row _getCounter(int length) => Row(
     spacing: 5.w,
     mainAxisAlignment: MainAxisAlignment.center,
-    children: List.generate(MyConstants.navItemImages.length, (i) {
+    children: List.generate(length, (i) {
       final bool isSelected = i == _currentBanner;
       return Container(
         height: isSelected ? 5.w : 2.w,
