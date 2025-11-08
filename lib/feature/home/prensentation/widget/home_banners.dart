@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/constants/my_constants.dart';
+import 'package:task_09/core/util/my_dimens.dart';
+import 'package:task_09/feature/home/data/model/home_banner.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomeBanners extends StatefulWidget {
@@ -19,53 +21,63 @@ class _HomeBannersState extends State<HomeBanners> {
 
   @override
   Widget build(BuildContext context) {
-    final items = Provider.of<HomeProvider>(context).bannerList;
+    final data = Provider.of<HomeProvider>(context);
+    final items = data.bannerList;
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       height: context.screenHeight * .12,
       width: double.infinity,
-      //  color: Colors.grey.shade300,
       child: Column(
         spacing: 5.h,
         children: [
           Expanded(
-            child: PageView.builder(
-              controller: _controller,
-              itemCount: items.length,
-              onPageChanged: (i) => setState(() => _currentBanner = i),
-              itemBuilder: (context, i) => Container(
-                margin: EdgeInsets.symmetric(horizontal: 10.w),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      items[i].imageFullUrl, //"https://picsum.photos/600/200",
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-            ),
+            child: data.isLoadingBanners
+                ? MyDimens.getLoadingIndication
+                : items.isEmpty
+                ? MyDimens.getNoItemText
+                : _getPageView(items),
           ),
-          Row(
-            spacing: 5.w,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(MyConstants.navItemImages.length, (i) {
-              final bool isSelected = i == _currentBanner;
-              return Container(
-                height: isSelected ? 5.w : 2.w,
-                width: isSelected ? 5.w : 2.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: isSelected ? MyColor.success : MyColor.gray500,
-                ),
-              );
-            }),
-          ),
+          _getCounter,
         ],
       ),
     );
   }
+
+  Widget _getPageView(List<HomeBanner> items) {
+    return PageView.builder(
+      controller: _controller,
+      itemCount: items.length,
+      onPageChanged: (i) => setState(() => _currentBanner = i),
+      itemBuilder: (context, i) => Container(
+        margin: EdgeInsets.symmetric(horizontal: 10.w),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.r),
+          image: DecorationImage(
+            image: CachedNetworkImageProvider(
+              items[i].imageFullUrl, //"https://picsum.photos/600/200",
+            ),
+            fit: BoxFit.fill,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Row get _getCounter => Row(
+    spacing: 5.w,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: List.generate(MyConstants.navItemImages.length, (i) {
+      final bool isSelected = i == _currentBanner;
+      return Container(
+        height: isSelected ? 5.w : 2.w,
+        width: isSelected ? 5.w : 2.w,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: isSelected ? MyColor.success : MyColor.gray500,
+        ),
+      );
+    }),
+  );
 
   @override
   void dispose() {

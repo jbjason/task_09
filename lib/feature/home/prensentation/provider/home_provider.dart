@@ -22,52 +22,78 @@ class HomeProvider with ChangeNotifier {
       List.unmodifiable(_foodCampaignList);
   PopularProduct? get popularItem => _popularProduct;
   HomeRestaurant? get homeRestaurant => _homeRestaurant;
-  double d = 5.toDouble();
+
+  bool _isLoadingCategory = false;
+  bool _isLoadingBanners = false;
+  bool _isLoadingCampaign = false;
+  bool _isLoadingPopular = false;
+  bool _isLoadingRestaurant = false;
+
+  bool get isLoadingCategory => _isLoadingCategory;
+  bool get isLoadingBanners => _isLoadingBanners;
+  bool get isLoadingCampaign => _isLoadingCampaign;
+  bool get isLoadingPopular => _isLoadingPopular;
+  bool get isLoadingRestaurant => _isLoadingRestaurant;
 
   Future<void> fetchCategories(BuildContext ctx) async {
+    _isLoadingCategory = true;
+    notifyListeners();
     try {
       final categories = await _repository.fetchCategories(ctx);
       _categoryList
         ..clear()
         ..addAll(categories);
-
-      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing categories: $e');
+    } finally {
+      _isLoadingCategory = false;
+      notifyListeners();
     }
   }
 
   Future<void> fetchBanners(BuildContext ctx) async {
+    _isLoadingBanners = true;
+    notifyListeners();
     try {
       final banners = await _repository.fetchBanners(ctx);
       _bannerList
         ..clear()
         ..addAll(banners);
-      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Banners: $e');
+    } finally {
+      _isLoadingBanners = false;
+      notifyListeners();
     }
   }
 
   Future<void> fetchFoodCampaigns(BuildContext ctx) async {
+    _isLoadingCampaign = true;
+    notifyListeners();
     try {
       final foodCampaignList = await _repository.fetchFoodCampaigns(ctx);
       _foodCampaignList
         ..clear()
         ..addAll(foodCampaignList);
-      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Food Campaigns: $e');
+    } finally {
+      _isLoadingCampaign = false;
+      notifyListeners();
     }
   }
 
   Future<void> fetchPopularProduct(BuildContext ctx) async {
+    _isLoadingPopular = true;
+    notifyListeners();
     try {
       final popularProduct = await _repository.fetchPopularProduct(ctx);
       _popularProduct = popularProduct;
-      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Popular Product: $e');
+    } finally {
+      _isLoadingPopular = false;
+      notifyListeners();
     }
   }
 
@@ -76,6 +102,8 @@ class HomeProvider with ChangeNotifier {
     int limit = 10,
     required BuildContext ctx,
   }) async {
+    _isLoadingRestaurant = true;
+    notifyListeners();
     try {
       final homeRestaurant = await _repository.fetchHomeRestaurant(
         offset: offset,
@@ -83,9 +111,11 @@ class HomeProvider with ChangeNotifier {
         ctx: ctx,
       );
       _homeRestaurant = homeRestaurant;
-      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Home Restaturant: $e');
+    } finally {
+      _isLoadingRestaurant = false;
+      notifyListeners();
     }
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_09/core/constants/my_color.dart';
 
 class MyDimens {
-  Widget getDemoPage(String title) => Center(child: Text(title));
+  Center getDemoPage(String title) => Center(child: Text(title));
 
   static List<BoxShadow> get getShadow => [
     BoxShadow(
@@ -13,7 +13,7 @@ class MyDimens {
     ),
   ];
 
-  Widget getTitleAndViewAll(String title, BuildContext context) {
+  Padding getTitleAndViewAll(String title, BuildContext context) {
     return Padding(
       padding: EdgeInsetsGeometry.only(left: 12.w, right: 12.w, bottom: 5.h),
       child: Row(
@@ -22,9 +22,10 @@ class MyDimens {
         children: [
           Text(
             title,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w900,color: MyColor.gray900),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w900,
+              color: MyColor.gray900,
+            ),
           ),
           Text(
             "View All",
@@ -37,4 +38,21 @@ class MyDimens {
       ),
     );
   }
+
+  static Center get getLoadingIndication =>
+      const Center(child: CircularProgressIndicator());
+
+  static Center get getNoItemText => const Center(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.inbox, size: 80, color: Colors.grey),
+        SizedBox(height: 16),
+        Text(
+          'No data found..',
+          style: TextStyle(fontSize: 18, color: Colors.grey),
+        ),
+      ],
+    ),
+  );
 }

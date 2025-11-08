@@ -5,14 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/util/my_dimens.dart';
+import 'package:task_09/feature/home/data/model/popular_product.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomePopularFoods extends StatelessWidget {
   const HomePopularFoods({super.key});
-
   @override
   Widget build(BuildContext context) {
-    final items = Provider.of<HomeProvider>(context).popularItem;
+    final data = Provider.of<HomeProvider>(context);
+    final items = data.popularItem;
     return Container(
       height: context.screenHeight * .25,
       padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -22,94 +23,103 @@ class HomePopularFoods extends StatelessWidget {
           MyDimens().getTitleAndViewAll("Popular Food Nearby", context),
           // food list
           Expanded(
-            child: ListView.builder(
-              clipBehavior: Clip.none,
-              scrollDirection: Axis.horizontal,
-              itemCount: items == null ? 0 : items.products.length,
-              itemBuilder: (context, i) => Container(
-                width: context.screenWidth * .375,
-                margin: EdgeInsets.only(left: 12.w),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(7.r),
-                  boxShadow: MyDimens.getShadow,
+            child: data.isLoadingPopular
+                ? MyDimens.getLoadingIndication
+                : (items == null || items.products.isEmpty)
+                ? MyDimens.getNoItemText
+                : ListView.builder(
+                    clipBehavior: Clip.none,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: items.products.length,
+                    itemBuilder: (context, i) =>
+                        HomePopularFoodsItem(item: items.products[i]),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomePopularFoodsItem extends StatelessWidget {
+  const HomePopularFoodsItem({super.key, required this.item});
+  final Product item;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: context.screenWidth * .375,
+      margin: EdgeInsets.only(left: 12.w),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(7.r),
+        boxShadow: MyDimens.getShadow,
+      ),
+      child: Column(
+        children: [
+          // image
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: MyColor.gray200,
+                borderRadius: BorderRadius.circular(7.r),
+                image: DecorationImage(
+                  //image: AssetImage(MyImage.profilePic),
+                  image: CachedNetworkImageProvider(
+                    item.imageFullUrl, // "https://picsum.photos/200/100",
+                  ),
+                  fit: BoxFit.fill,
                 ),
-                child: Column(
+              ),
+            ),
+          ),
+          // details
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
+            child: Column(
+              spacing: 2.h,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // title
+                Text(
+                  item.name,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),
+                ),
+                // restaurant
+                Text(
+                  item.restaurantName,
+                  style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    fontSize: 5.sp,
+                    color: MyColor.gray500,
+                  ),
+                ),
+                // price & average rating
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // image
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: MyColor.gray200,
-                          borderRadius: BorderRadius.circular(7.r),
-                          image: DecorationImage(
-                            //image: AssetImage(MyImage.profilePic),
-                            image: CachedNetworkImageProvider(
-                              items!
-                                  .products[i]
-                                  .imageFullUrl, // "https://picsum.photos/200/100",
-                            ),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                    // price
+                    Text(
+                      "\$${item.price}",
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // details
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 5.w,
-                        vertical: 8.h,
-                      ),
-                      child: Column(
-                        spacing: 2.h,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // title
-                          Text(
-                            items.products[i].name,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.bodySmall!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                          // restaurant
-                          Text(
-                            items.products[i].restaurantName,
-                            style: Theme.of(context).textTheme.labelSmall!
-                                .copyWith(
-                                  fontSize: 5.sp,
-                                  color: MyColor.gray500,
-                                ),
-                          ),
-                          // price & average rating
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // price
-                              Text(
-                                "\$${items.products[i].price}",
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.bodySmall!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              // rating
-                              Text(
-                                "★ ${items.products[i].avgRating.toStringAsFixed(1)}",
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.bodySmall!
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: MyColor.success,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ],
+                    // rating
+                    Text(
+                      "★ ${item.avgRating.toStringAsFixed(1)}",
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: MyColor.success,
                       ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
           ),
         ],
