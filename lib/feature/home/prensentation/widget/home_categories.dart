@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/util/my_dimens.dart';
-import 'package:task_09/feature/home/data/model/category.dart';
+import 'package:task_09/feature/home/domain/entities/category_entity.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomeCategories extends StatelessWidget {
@@ -39,7 +39,7 @@ class HomeCategories extends StatelessWidget {
 
 class HomeCategoryItem extends StatelessWidget {
   const HomeCategoryItem({super.key, required this.item});
-  final Category item;
+  final CategoryEntity item;
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/util/my_dimens.dart';
-import 'package:task_09/feature/home/data/model/home_restaurant.dart';
+import 'package:task_09/feature/home/domain/entities/home_restaurant_entity.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomeRestaturant extends StatelessWidget {
@@ -39,7 +39,7 @@ class HomeRestaturant extends StatelessWidget {
 
 class HomeRestaturantItem extends StatelessWidget {
   const HomeRestaturantItem({super.key, required this.item});
-  final RestaurantElement item;
+  final RestaurantElementEntity item;
 
   @override
   Widget build(BuildContext context) {

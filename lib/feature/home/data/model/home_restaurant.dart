@@ -1,18 +1,13 @@
 import 'package:task_09/core/error/safe_parse.dart';
+import 'package:task_09/feature/home/domain/entities/home_restaurant_entity.dart';
 
-class HomeRestaurant {
-  String filterData;
-  int totalSize;
-  String limit;
-  String offset;
-  List<RestaurantElement> restaurants;
-
+class HomeRestaurant extends HomeRestaurantEntity {
   HomeRestaurant({
-    required this.filterData,
-    required this.totalSize,
-    required this.limit,
-    required this.offset,
-    required this.restaurants,
+    required super.filterData,
+    required super.totalSize,
+    required super.limit,
+    required super.offset,
+    required super.restaurants,
   });
 
   factory HomeRestaurant.fromJson(Map<String, dynamic> json) => HomeRestaurant(
@@ -26,189 +21,98 @@ class HomeRestaurant {
   );
 }
 
-class RestaurantElement {
-  int id;
-  String name;
-  String phone;
-  String email;
-  String logo;
-  String latitude;
-  String longitude;
-  String address;
-  dynamic footerText;
-  int minimumOrder;
-  dynamic comission;
-  bool scheduleOrder;
-  dynamic openingTime;
-  dynamic closeingTime;
-  int status;
-  int vendorId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  bool freeDelivery;
-  String coverPhoto;
-  bool delivery;
-  bool takeAway;
-  bool foodSection;
-  int tax;
-  int zoneId;
-  bool reviewsSection;
-  bool active;
-  String offDay;
-  int selfDeliverySystem;
-  bool posSystem;
-  int minimumShippingCharge;
-  String deliveryTime;
-  int veg;
-  int nonVeg;
-  int orderCount;
-  int totalOrder;
-  dynamic perKmShippingCharge;
-  String restaurantModel;
-  dynamic maximumShippingCharge;
-  String slug;
-  bool orderSubscriptionActive;
-  bool cutlery;
-  dynamic metaTitle;
-  dynamic metaDescription;
-  dynamic metaImage;
-  int announcement;
-  String announcementMessage;
-  dynamic qrCode;
-  dynamic additionalData;
-  String additionalDocuments;
-  dynamic packageId;
-  dynamic tin;
-  dynamic tinExpireDate;
-  dynamic tinCertificateImage;
-  int open;
-  double distance;
-  int foodsCount;
-  int reviewsCommentsCount;
-  List<Food> foods;
-  int priceStartsFrom;
-  List<dynamic> coupons;
-  String deliveryFee;
-  int restaurantStatus;
-  List<dynamic> cuisine;
-  List<dynamic> ratings;
-  int avgRating;
-  int ratingCount;
-  int positiveRating;
-  int customerOrderDate;
-  bool customerDateOrderSratus;
-  bool instantOrder;
-  bool halalTagStatus;
-  String currentOpeningTime;
-  bool isExtraPackagingActive;
-  bool extraPackagingStatus;
-  int extraPackagingAmount;
-  bool isDineInActive;
-  bool canEditOrder;
-  int scheduleAdvanceDineInBookingDuration;
-  String scheduleAdvanceDineInBookingDurationTimeFormat;
-  List<dynamic> characteristics;
-  bool gstStatus;
-  String gstCode;
-  bool freeDeliveryDistanceStatus;
-  String freeDeliveryDistanceValue;
-  String logoFullUrl;
-  String coverPhotoFullUrl;
-  dynamic metaImageFullUrl;
-  dynamic tinCertificateImageFullUrl;
-  dynamic discount;
-
+class RestaurantElement extends RestaurantElementEntity {
   RestaurantElement({
-    required this.id,
-    required this.name,
-    required this.phone,
-    required this.email,
-    required this.logo,
-    required this.latitude,
-    required this.longitude,
-    required this.address,
-    required this.footerText,
-    required this.minimumOrder,
-    required this.comission,
-    required this.scheduleOrder,
-    required this.openingTime,
-    required this.closeingTime,
-    required this.status,
-    required this.vendorId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.freeDelivery,
-    required this.coverPhoto,
-    required this.delivery,
-    required this.takeAway,
-    required this.foodSection,
-    required this.tax,
-    required this.zoneId,
-    required this.reviewsSection,
-    required this.active,
-    required this.offDay,
-    required this.selfDeliverySystem,
-    required this.posSystem,
-    required this.minimumShippingCharge,
-    required this.deliveryTime,
-    required this.veg,
-    required this.nonVeg,
-    required this.orderCount,
-    required this.totalOrder,
-    required this.perKmShippingCharge,
-    required this.restaurantModel,
-    required this.maximumShippingCharge,
-    required this.slug,
-    required this.orderSubscriptionActive,
-    required this.cutlery,
-    required this.metaTitle,
-    required this.metaDescription,
-    required this.metaImage,
-    required this.announcement,
-    required this.announcementMessage,
-    required this.qrCode,
-    required this.additionalData,
-    required this.additionalDocuments,
-    required this.packageId,
-    required this.tin,
-    required this.tinExpireDate,
-    required this.tinCertificateImage,
-    required this.open,
-    required this.distance,
-    required this.foodsCount,
-    required this.reviewsCommentsCount,
-    required this.foods,
-    required this.priceStartsFrom,
-    required this.coupons,
-    required this.deliveryFee,
-    required this.restaurantStatus,
-    required this.cuisine,
-    required this.ratings,
-    required this.avgRating,
-    required this.ratingCount,
-    required this.positiveRating,
-    required this.customerOrderDate,
-    required this.customerDateOrderSratus,
-    required this.instantOrder,
-    required this.halalTagStatus,
-    required this.currentOpeningTime,
-    required this.isExtraPackagingActive,
-    required this.extraPackagingStatus,
-    required this.extraPackagingAmount,
-    required this.isDineInActive,
-    required this.canEditOrder,
-    required this.scheduleAdvanceDineInBookingDuration,
-    required this.scheduleAdvanceDineInBookingDurationTimeFormat,
-    required this.characteristics,
-    required this.gstStatus,
-    required this.gstCode,
-    required this.freeDeliveryDistanceStatus,
-    required this.freeDeliveryDistanceValue,
-    required this.logoFullUrl,
-    required this.coverPhotoFullUrl,
-    required this.metaImageFullUrl,
-    required this.tinCertificateImageFullUrl,
-    required this.discount,
+    required super.id,
+    required super.name,
+    required super.phone,
+    required super.email,
+    required super.logo,
+    required super.latitude,
+    required super.longitude,
+    required super.address,
+    required super.footerText,
+    required super.minimumOrder,
+    required super.comission,
+    required super.scheduleOrder,
+    required super.openingTime,
+    required super.closeingTime,
+    required super.status,
+    required super.vendorId,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.freeDelivery,
+    required super.coverPhoto,
+    required super.delivery,
+    required super.takeAway,
+    required super.foodSection,
+    required super.tax,
+    required super.zoneId,
+    required super.reviewsSection,
+    required super.active,
+    required super.offDay,
+    required super.selfDeliverySystem,
+    required super.posSystem,
+    required super.minimumShippingCharge,
+    required super.deliveryTime,
+    required super.veg,
+    required super.nonVeg,
+    required super.orderCount,
+    required super.totalOrder,
+    required super.perKmShippingCharge,
+    required super.restaurantModel,
+    required super.maximumShippingCharge,
+    required super.slug,
+    required super.orderSubscriptionActive,
+    required super.cutlery,
+    required super.metaTitle,
+    required super.metaDescription,
+    required super.metaImage,
+    required super.announcement,
+    required super.announcementMessage,
+    required super.qrCode,
+    required super.additionalData,
+    required super.additionalDocuments,
+    required super.packageId,
+    required super.tin,
+    required super.tinExpireDate,
+    required super.tinCertificateImage,
+    required super.open,
+    required super.distance,
+    required super.foodsCount,
+    required super.reviewsCommentsCount,
+    required super.foods,
+    required super.priceStartsFrom,
+    required super.coupons,
+    required super.deliveryFee,
+    required super.restaurantStatus,
+    required super.cuisine,
+    required super.ratings,
+    required super.avgRating,
+    required super.ratingCount,
+    required super.positiveRating,
+    required super.customerOrderDate,
+    required super.customerDateOrderSratus,
+    required super.instantOrder,
+    required super.halalTagStatus,
+    required super.currentOpeningTime,
+    required super.isExtraPackagingActive,
+    required super.extraPackagingStatus,
+    required super.extraPackagingAmount,
+    required super.isDineInActive,
+    required super.canEditOrder,
+    required super.scheduleAdvanceDineInBookingDuration,
+    required super.scheduleAdvanceDineInBookingDurationTimeFormat,
+    required super.characteristics,
+    required super.gstStatus,
+    required super.gstCode,
+    required super.freeDeliveryDistanceStatus,
+    required super.freeDeliveryDistanceValue,
+    required super.logoFullUrl,
+    required super.coverPhotoFullUrl,
+    required super.metaImageFullUrl,
+    required super.tinCertificateImageFullUrl,
+    required super.discount,
   });
 
   factory RestaurantElement.fromJson(
@@ -380,21 +284,14 @@ class RestaurantElement {
   );
 }
 
-class Food {
-  int id;
-  String image;
-  String name;
-  String imageFullUrl;
-  List<dynamic> storage;
-  List<Translation> translations;
-
+class Food extends FoodEntity {
   Food({
-    required this.id,
-    required this.image,
-    required this.name,
-    required this.imageFullUrl,
-    required this.storage,
-    required this.translations,
+    required super.id,
+    required super.image,
+    required super.name,
+    required super.imageFullUrl,
+    required super.storage,
+    required super.translations,
   });
 
   factory Food.fromJson(Map<String, dynamic> json) => Food(
@@ -409,25 +306,16 @@ class Food {
   );
 }
 
-class Translation {
-  int id;
-  String translationableType;
-  int translationableId;
-  String locale;
-  String key;
-  String value;
-  dynamic createdAt;
-  dynamic updatedAt;
-
+class Translation extends TranslationEntity {
   Translation({
-    required this.id,
-    required this.translationableType,
-    required this.translationableId,
-    required this.locale,
-    required this.key,
-    required this.value,
-    required this.createdAt,
-    required this.updatedAt,
+    required super.id,
+    required super.translationableType,
+    required super.translationableId,
+    required super.locale,
+    required super.key,
+    required super.value,
+    required super.createdAt,
+    required super.updatedAt,
   });
 
   factory Translation.fromJson(Map<String, dynamic> json) => Translation(

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/util/my_dimens.dart';
-import 'package:task_09/feature/home/data/model/popular_product.dart';
+import 'package:task_09/feature/home/domain/entities/popular_product_entity.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomePopularFoods extends StatelessWidget {
@@ -14,28 +14,30 @@ class HomePopularFoods extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = Provider.of<HomeProvider>(context);
     final items = data.popularItem;
-    return Container(
+    return SizedBox(
       height: context.screenHeight * .25,
-      padding: EdgeInsets.symmetric(vertical: 10.h),
-      child: Column(
-        children: [
-          // section title
-          MyDimens().getTitleAndViewAll("Popular Food Nearby", context),
-          // food list
-          Expanded(
-            child: data.isLoadingPopular
-                ? MyDimens.getLoadingIndication
-                : (items == null || items.products.isEmpty)
-                ? MyDimens.getNoItemText
-                : ListView.builder(
-                    clipBehavior: Clip.none,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: items.products.length,
-                    itemBuilder: (context, i) =>
-                        HomePopularFoodsItem(item: items.products[i]),
-                  ),
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        child: Column(
+          children: [
+            // section title
+            MyDimens().getTitleAndViewAll("Popular Food Nearby", context),
+            // food list
+            Expanded(
+              child: data.isLoadingPopular
+                  ? MyDimens.getLoadingIndication
+                  : (items == null || items.products.isEmpty)
+                  ? MyDimens.getNoItemText
+                  : ListView.builder(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: items.products.length,
+                      itemBuilder: (context, i) =>
+                          HomePopularFoodsItem(item: items.products[i]),
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -43,7 +45,7 @@ class HomePopularFoods extends StatelessWidget {
 
 class HomePopularFoodsItem extends StatelessWidget {
   const HomePopularFoodsItem({super.key, required this.item});
-  final Product item;
+  final ProductEntity item;
   @override
   Widget build(BuildContext context) {
     return Container(

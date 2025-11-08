@@ -43,16 +43,19 @@ class MyDimens {
       const Center(child: CircularProgressIndicator());
 
   static Center get getNoItemText => const Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(Icons.inbox, size: 80, color: Colors.grey),
-        SizedBox(height: 16),
-        Text(
-          'No data found..',
-          style: TextStyle(fontSize: 18, color: Colors.grey),
-        ),
-      ],
+    child: SizedBox(
+      height: 150,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.inbox, size: 80, color: Colors.grey),
+          SizedBox(height: 16),
+          Text(
+            'No data found..',
+            style: TextStyle(fontSize: 18, color: Colors.grey),
+          ),
+        ],
+      ),
     ),
   );
 }

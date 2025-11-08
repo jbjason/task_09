@@ -1,108 +1,58 @@
 import 'package:task_09/core/error/safe_parse.dart';
+import 'package:task_09/feature/home/domain/entities/food_campaign_entity.dart';
 
-class FoodCampaign {
-  int id;
-  String image;
-  String description;
-  int status;
-  int adminId;
-  dynamic categoryId;
-  List<CategoryId> categoryIds;
-  List<Variation> variations;
-  List<AddOn> addOns;
-  String attributes;
-  String choiceOptions;
-  int price;
-  int tax;
-  String taxType;
-  int discount;
-  String discountType;
-  int restaurantId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int veg;
-  dynamic slug;
-  dynamic maximumCartQuantity;
-  int tempAvailable;
-  int open;
-  String name;
-  String availableTimeStarts;
-  String availableTimeEnds;
-  DateTime availableDateStarts;
-  DateTime availableDateEnds;
-  int recommended;
-  dynamic tags;
-  String restaurantName;
-  int restaurantStatus;
-  int restaurantDiscount;
-  String restaurantOpeningTime;
-  String restaurantClosingTime;
-  bool scheduleOrder;
-  int ratingCount;
-  int avgRating;
-  int minDeliveryTime;
-  int maxDeliveryTime;
-  int freeDelivery;
-  int halalTagStatus;
-  dynamic nutritionsName;
-  dynamic allergiesName;
-  List<dynamic> cuisines;
-  List<dynamic> taxData;
-  String imageFullUrl;
-  List<Translation> translations;
-  List<Storage> storage;
-
+class FoodCampaign extends FoodCampaignEntity {
   FoodCampaign({
-    required this.id,
-    required this.image,
-    required this.description,
-    required this.status,
-    required this.adminId,
-    required this.categoryId,
-    required this.categoryIds,
-    required this.variations,
-    required this.addOns,
-    required this.attributes,
-    required this.choiceOptions,
-    required this.price,
-    required this.tax,
-    required this.taxType,
-    required this.discount,
-    required this.discountType,
-    required this.restaurantId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.veg,
-    required this.slug,
-    required this.maximumCartQuantity,
-    required this.tempAvailable,
-    required this.open,
-    required this.name,
-    required this.availableTimeStarts,
-    required this.availableTimeEnds,
-    required this.availableDateStarts,
-    required this.availableDateEnds,
-    required this.recommended,
-    required this.tags,
-    required this.restaurantName,
-    required this.restaurantStatus,
-    required this.restaurantDiscount,
-    required this.restaurantOpeningTime,
-    required this.restaurantClosingTime,
-    required this.scheduleOrder,
-    required this.ratingCount,
-    required this.avgRating,
-    required this.minDeliveryTime,
-    required this.maxDeliveryTime,
-    required this.freeDelivery,
-    required this.halalTagStatus,
-    required this.nutritionsName,
-    required this.allergiesName,
-    required this.cuisines,
-    required this.taxData,
-    required this.imageFullUrl,
-    required this.translations,
-    required this.storage,
+    required super.id,
+    required super.image,
+    required super.description,
+    required super.status,
+    required super.adminId,
+    required super.categoryId,
+    required super.categoryIds,
+    required super.variations,
+    required super.addOns,
+    required super.attributes,
+    required super.choiceOptions,
+    required super.price,
+    required super.tax,
+    required super.taxType,
+    required super.discount,
+    required super.discountType,
+    required super.restaurantId,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.veg,
+    required super.slug,
+    required super.maximumCartQuantity,
+    required super.tempAvailable,
+    required super.open,
+    required super.name,
+    required super.availableTimeStarts,
+    required super.availableTimeEnds,
+    required super.availableDateStarts,
+    required super.availableDateEnds,
+    required super.recommended,
+    required super.tags,
+    required super.restaurantName,
+    required super.restaurantStatus,
+    required super.restaurantDiscount,
+    required super.restaurantOpeningTime,
+    required super.restaurantClosingTime,
+    required super.scheduleOrder,
+    required super.ratingCount,
+    required super.avgRating,
+    required super.minDeliveryTime,
+    required super.maxDeliveryTime,
+    required super.freeDelivery,
+    required super.halalTagStatus,
+    required super.nutritionsName,
+    required super.allergiesName,
+    required super.cuisines,
+    required super.taxData,
+    required super.imageFullUrl,
+    required super.translations,
+    required super.storage,
   });
 
   factory FoodCampaign.fromJson(Map<String, dynamic> json) => FoodCampaign(
@@ -208,35 +158,21 @@ class FoodCampaign {
   );
 }
 
-class AddOn {
-  int id;
-  String name;
-  int price;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int restaurantId;
-  int status;
-  String stockType;
-  int addonStock;
-  int sellCount;
-  dynamic addonCategoryId;
-  List<dynamic> taxIds;
-  List<dynamic> translations;
-
+class AddOn extends AddOnEntity {
   AddOn({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.restaurantId,
-    required this.status,
-    required this.stockType,
-    required this.addonStock,
-    required this.sellCount,
-    required this.addonCategoryId,
-    required this.taxIds,
-    required this.translations,
+    required super.id,
+    required super.name,
+    required super.price,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.restaurantId,
+    required super.status,
+    required super.stockType,
+    required super.addonStock,
+    required super.sellCount,
+    required super.addonCategoryId,
+    required super.taxIds,
+    required super.translations,
   });
 
   factory AddOn.fromJson(Map<String, dynamic> json) => AddOn(
@@ -260,15 +196,11 @@ class AddOn {
   );
 }
 
-class CategoryId {
-  String id;
-  int position;
-  String categoryName;
-
+class CategoryId extends CategoryIdEntity {
   CategoryId({
-    required this.id,
-    required this.position,
-    required this.categoryName,
+    required super.id,
+    required super.position,
+    required super.categoryName,
   });
 
   factory CategoryId.fromJson(Map<String, dynamic> json) => CategoryId(
@@ -278,23 +210,15 @@ class CategoryId {
   );
 }
 
-class Storage {
-  int id;
-  String dataType;
-  String dataId;
-  String key;
-  String value;
-  DateTime createdAt;
-  DateTime updatedAt;
-
+class Storage extends StorageEntity {
   Storage({
-    required this.id,
-    required this.dataType,
-    required this.dataId,
-    required this.key,
-    required this.value,
-    required this.createdAt,
-    required this.updatedAt,
+    required super.id,
+    required super.dataType,
+    required super.dataId,
+    required super.key,
+    required super.value,
+    required super.createdAt,
+    required super.updatedAt,
   });
 
   factory Storage.fromJson(Map<String, dynamic> json) => Storage(
@@ -312,25 +236,16 @@ class Storage {
   );
 }
 
-class Translation {
-  int id;
-  String translationableType;
-  int translationableId;
-  String locale;
-  String key;
-  String value;
-  dynamic createdAt;
-  dynamic updatedAt;
-
+class Translation extends TranslationEntity {
   Translation({
-    required this.id,
-    required this.translationableType,
-    required this.translationableId,
-    required this.locale,
-    required this.key,
-    required this.value,
-    required this.createdAt,
-    required this.updatedAt,
+    required super.id,
+    required super.translationableType,
+    required super.translationableId,
+    required super.locale,
+    required super.key,
+    required super.value,
+    required super.createdAt,
+    required super.updatedAt,
   });
 
   factory Translation.fromJson(Map<String, dynamic> json) => Translation(
@@ -351,21 +266,14 @@ class Translation {
   );
 }
 
-class Variation {
-  String name;
-  String type;
-  int min;
-  int max;
-  String required;
-  List<Value> values;
-
+class Variation extends VariationEntity {
   Variation({
-    required this.name,
-    required this.type,
-    required this.min,
-    required this.max,
-    required this.required,
-    required this.values,
+    required super.name,
+    required super.type,
+    required super.min,
+    required super.max,
+    required super.requiredField,
+    required super.values,
   });
 
   factory Variation.fromJson(Map<String, dynamic> json) => Variation(
@@ -373,16 +281,13 @@ class Variation {
     type: safeParse<String>(json["type"], 'type')!,
     min: safeParse<int>(json["min"], 'min')!,
     max: safeParse<int>(json["max"], 'max')!,
-    required: safeParse<String>(json["required"], 'required')!,
+    requiredField: safeParse<String>(json["required"], 'required')!,
     values: List<Value>.from(json["values"].map((x) => Value.fromJson(x))),
   );
 }
 
-class Value {
-  String label;
-  String optionPrice;
-
-  Value({required this.label, required this.optionPrice});
+class Value extends ValueEntity {
+  Value({required super.label, required super.optionPrice});
 
   factory Value.fromJson(Map<String, dynamic> json) => Value(
     label: safeParse<String>(json["label"], 'label')!,

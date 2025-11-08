@@ -1,16 +1,12 @@
 import 'package:task_09/core/error/safe_parse.dart';
+import 'package:task_09/feature/home/domain/entities/popular_product_entity.dart';
 
-class PopularProduct {
-  int totalSize;
-  dynamic limit;
-  dynamic offset;
-  List<Product> products;
-
-  PopularProduct({
-    required this.totalSize,
-    required this.limit,
-    required this.offset,
-    required this.products,
+class PopularProduct extends PopularProductEntity {
+  const PopularProduct({
+    required super.totalSize,
+    required super.limit,
+    required super.offset,
+    required super.products,
   });
 
   factory PopularProduct.fromJson(Map<String, dynamic> json) => PopularProduct(
@@ -23,109 +19,58 @@ class PopularProduct {
   );
 }
 
-class Product {
-  int id;
-  String name;
-  String description;
-  String image;
-  int categoryId;
-  List<CategoryId> categoryIds;
-  List<Variation> variations;
-  List<AddOn> addOns;
-  int price;
-  int tax;
-  String taxType;
-  int discount;
-  String discountType;
-  String availableTimeStarts;
-  String availableTimeEnds;
-  int veg;
-  int status;
-  int restaurantId;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int orderCount;
-  double avgRating;
-  int ratingCount;
-  int recommended;
-  String slug;
-  dynamic maximumCartQuantity;
-  int isHalal;
-  int itemStock;
-  int sellCount;
-  String stockType;
-  int tempAvailable;
-  int open;
-  int reviewsCount;
-  String restaurantName;
-  int restaurantStatus;
-  int restaurantDiscount;
-  dynamic restaurantOpeningTime;
-  dynamic restaurantClosingTime;
-  bool scheduleOrder;
-  int minDeliveryTime;
-  int maxDeliveryTime;
-  int freeDelivery;
-  int halalTagStatus;
-  List<String> nutritionsName;
-  List<String> allergiesName;
-  List<Cuisine> cuisines;
-  List<dynamic> taxData;
-  String imageFullUrl;
-  List<Nutrition> nutritions;
-  List<Allergy> allergies;
-
-  Product({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.image,
-    required this.categoryId,
-    required this.categoryIds,
-    required this.variations,
-    required this.addOns,
-    required this.price,
-    required this.tax,
-    required this.taxType,
-    required this.discount,
-    required this.discountType,
-    required this.availableTimeStarts,
-    required this.availableTimeEnds,
-    required this.veg,
-    required this.status,
-    required this.restaurantId,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.orderCount,
-    required this.avgRating,
-    required this.ratingCount,
-    required this.recommended,
-    required this.slug,
-    required this.maximumCartQuantity,
-    required this.isHalal,
-    required this.itemStock,
-    required this.sellCount,
-    required this.stockType,
-    required this.tempAvailable,
-    required this.open,
-    required this.reviewsCount,
-    required this.restaurantName,
-    required this.restaurantStatus,
-    required this.restaurantDiscount,
-    required this.restaurantOpeningTime,
-    required this.restaurantClosingTime,
-    required this.scheduleOrder,
-    required this.minDeliveryTime,
-    required this.maxDeliveryTime,
-    required this.freeDelivery,
-    required this.halalTagStatus,
-    required this.nutritionsName,
-    required this.allergiesName,
-    required this.cuisines,
-    required this.taxData,
-    required this.imageFullUrl,
-    required this.nutritions,
-    required this.allergies,
+class Product extends ProductEntity {
+  const Product({
+    required super.id,
+    required super.name,
+    required super.description,
+    required super.image,
+    required super.categoryId,
+    required super.categoryIds,
+    required super.variations,
+    required super.addOns,
+    required super.price,
+    required super.tax,
+    required super.taxType,
+    required super.discount,
+    required super.discountType,
+    required super.availableTimeStarts,
+    required super.availableTimeEnds,
+    required super.veg,
+    required super.status,
+    required super.restaurantId,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.orderCount,
+    required super.avgRating,
+    required super.ratingCount,
+    required super.recommended,
+    required super.slug,
+    required super.maximumCartQuantity,
+    required super.isHalal,
+    required super.itemStock,
+    required super.sellCount,
+    required super.stockType,
+    required super.tempAvailable,
+    required super.open,
+    required super.reviewsCount,
+    required super.restaurantName,
+    required super.restaurantStatus,
+    required super.restaurantDiscount,
+    required super.restaurantOpeningTime,
+    required super.restaurantClosingTime,
+    required super.scheduleOrder,
+    required super.minDeliveryTime,
+    required super.maxDeliveryTime,
+    required super.freeDelivery,
+    required super.halalTagStatus,
+    required super.nutritionsName,
+    required super.allergiesName,
+    required super.cuisines,
+    required super.taxData,
+    required super.imageFullUrl,
+    required super.nutritions,
+    required super.allergies,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -228,35 +173,21 @@ class Product {
   );
 }
 
-class AddOn {
-  int id;
-  String name;
-  int price;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int restaurantId;
-  int status;
-  String stockType;
-  int addonStock;
-  int sellCount;
-  dynamic addonCategoryId;
-  List<dynamic> taxIds;
-  List<dynamic> translations;
-
-  AddOn({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.restaurantId,
-    required this.status,
-    required this.stockType,
-    required this.addonStock,
-    required this.sellCount,
-    required this.addonCategoryId,
-    required this.taxIds,
-    required this.translations,
+class AddOn extends AddOnEntity {
+  const AddOn({
+    required super.id,
+    required super.name,
+    required super.price,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.restaurantId,
+    required super.status,
+    required super.stockType,
+    required super.addonStock,
+    required super.sellCount,
+    required super.addonCategoryId,
+    required super.taxIds,
+    required super.translations,
   });
 
   factory AddOn.fromJson(Map<String, dynamic> json) => AddOn(
@@ -280,19 +211,13 @@ class AddOn {
   );
 }
 
-class Allergy {
-  int id;
-  String allergy;
-  DateTime createdAt;
-  DateTime updatedAt;
-  AllergyPivot pivot;
-
-  Allergy({
-    required this.id,
-    required this.allergy,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.pivot,
+class Allergy extends AllergyEntity {
+  const Allergy({
+    required super.id,
+    required super.allergy,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.pivot,
   });
 
   factory Allergy.fromJson(Map<String, dynamic> json) => Allergy(
@@ -308,11 +233,8 @@ class Allergy {
   );
 }
 
-class AllergyPivot {
-  int foodId;
-  int allergyId;
-
-  AllergyPivot({required this.foodId, required this.allergyId});
+class AllergyPivot extends AllergyPivotEntity {
+  const AllergyPivot({required super.foodId, required super.allergyId});
 
   factory AllergyPivot.fromJson(Map<String, dynamic> json) => AllergyPivot(
     foodId: safeParse<int>(json["food_id"], 'food_id')!,
@@ -320,15 +242,11 @@ class AllergyPivot {
   );
 }
 
-class CategoryId {
-  String id;
-  int position;
-  String categoryName;
-
-  CategoryId({
-    required this.id,
-    required this.position,
-    required this.categoryName,
+class CategoryId extends CategoryIdEntity {
+  const CategoryId({
+    required super.id,
+    required super.position,
+    required super.categoryName,
   });
 
   factory CategoryId.fromJson(Map<String, dynamic> json) => CategoryId(
@@ -338,12 +256,8 @@ class CategoryId {
   );
 }
 
-class Cuisine {
-  int id;
-  String name;
-  String image;
-
-  Cuisine({required this.id, required this.name, required this.image});
+class Cuisine extends CuisineEntity {
+  const Cuisine({required super.id, required super.name, required super.image});
 
   factory Cuisine.fromJson(Map<String, dynamic> json) => Cuisine(
     id: safeParse<int>(json["id"], 'id')!,
@@ -352,19 +266,13 @@ class Cuisine {
   );
 }
 
-class Nutrition {
-  int id;
-  String nutrition;
-  DateTime createdAt;
-  DateTime updatedAt;
-  NutritionPivot pivot;
-
-  Nutrition({
-    required this.id,
-    required this.nutrition,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.pivot,
+class Nutrition extends NutritionEntity {
+  const Nutrition({
+    required super.id,
+    required super.nutrition,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.pivot,
   });
 
   factory Nutrition.fromJson(Map<String, dynamic> json) => Nutrition(
@@ -380,11 +288,8 @@ class Nutrition {
   );
 }
 
-class NutritionPivot {
-  int foodId;
-  int nutritionId;
-
-  NutritionPivot({required this.foodId, required this.nutritionId});
+class NutritionPivot extends NutritionPivotEntity {
+  const NutritionPivot({required super.foodId, required super.nutritionId});
 
   factory NutritionPivot.fromJson(Map<String, dynamic> json) => NutritionPivot(
     foodId: safeParse<int>(json["food_id"], 'food_id')!,
@@ -392,23 +297,15 @@ class NutritionPivot {
   );
 }
 
-class Variation {
-  int? variationId;
-  String name;
-  String type;
-  String min;
-  String max;
-  String required;
-  List<Value> values;
-
-  Variation({
-    required this.variationId,
-    required this.name,
-    required this.type,
-    required this.min,
-    required this.max,
-    required this.required,
-    required this.values,
+class Variation extends VariationEntity {
+  const Variation({
+    required super.variationId,
+    required super.name,
+    required super.type,
+    required super.min,
+    required super.max,
+    required super.requiredField,
+    required super.values,
   });
 
   factory Variation.fromJson(Map<String, dynamic> json) => Variation(
@@ -418,28 +315,20 @@ class Variation {
     type: safeParse<String>(json["type"], 'type')!,
     min: safeParse<String>(json["min"], 'min')!,
     max: safeParse<String>(json["max"], 'max')!,
-    required: safeParse<String>(json["required"], 'required')!,
+    requiredField: safeParse<String>(json["required"], 'required')!,
     values: List<Value>.from(json["values"].map((x) => Value.fromJson(x))),
   );
 }
 
-class Value {
-  String label;
-  int optionPrice;
-  String totalStock;
-  String stockType;
-  String sellCount;
-  int? optionId;
-  int? currentStock;
-
-  Value({
-    required this.label,
-    required this.optionPrice,
-    required this.totalStock,
-    required this.stockType,
-    required this.sellCount,
-    required this.optionId,
-    required this.currentStock,
+class Value extends ValueEntity {
+  const Value({
+    required super.label,
+    required super.optionPrice,
+    required super.totalStock,
+    required super.stockType,
+    required super.sellCount,
+    required super.optionId,
+    required super.currentStock,
   });
 
   factory Value.fromJson(Map<String, dynamic> json) => Value(

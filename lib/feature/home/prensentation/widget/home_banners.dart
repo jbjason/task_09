@@ -6,7 +6,7 @@ import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/constants/my_constants.dart';
 import 'package:task_09/core/util/my_dimens.dart';
-import 'package:task_09/feature/home/data/model/home_banner.dart';
+import 'package:task_09/feature/home/domain/entities/home_banner_entity.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomeBanners extends StatefulWidget {
@@ -43,7 +43,7 @@ class _HomeBannersState extends State<HomeBanners> {
     );
   }
 
-  Widget _getPageView(List<HomeBanner> items) {
+  Widget _getPageView(List<HomeBannerEntity> items) {
     return PageView.builder(
       controller: _controller,
       itemCount: items.length,

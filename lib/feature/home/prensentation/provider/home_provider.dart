@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:task_09/feature/home/data/model/category.dart';
-import 'package:task_09/feature/home/data/model/food_campaign.dart';
-import 'package:task_09/feature/home/data/model/home_banner.dart';
-import 'package:task_09/feature/home/data/model/home_restaurant.dart';
-import 'package:task_09/feature/home/data/model/popular_product.dart';
-import 'package:task_09/feature/home/data/repository/home_repository.dart';
+import 'package:task_09/feature/home/domain/entities/category_entity.dart';
+import 'package:task_09/feature/home/domain/entities/food_campaign_entity.dart';
+import 'package:task_09/feature/home/domain/entities/home_banner_entity.dart';
+import 'package:task_09/feature/home/domain/entities/home_restaurant_entity.dart';
+import 'package:task_09/feature/home/domain/entities/popular_product_entity.dart';
+import 'package:task_09/feature/home/domain/repository/home_repository_domain.dart';
 
 class HomeProvider with ChangeNotifier {
-  final HomeRepository _repository;
+  final HomeRepositoryDomain _repository;
   HomeProvider(this._repository);
 
-  final List<Category> _categoryList = [];
-  final List<HomeBanner> _bannerList = [];
-  final List<FoodCampaign> _foodCampaignList = [];
-  PopularProduct? _popularProduct;
-  HomeRestaurant? _homeRestaurant;
+  final List<CategoryEntity> _categoryList = [];
+  final List<HomeBannerEntity> _bannerList = [];
+  final List<FoodCampaignEntity> _foodCampaignList = [];
+  PopularProductEntity? _popularProduct;
+  HomeRestaurantEntity? _homeRestaurant;
 
-  List<Category> get categoryList => List.unmodifiable(_categoryList);
-  List<HomeBanner> get bannerList => List.unmodifiable(_bannerList);
-  List<FoodCampaign> get foodCampaignList =>
+  List<CategoryEntity> get categoryList => List.unmodifiable(_categoryList);
+  List<HomeBannerEntity> get bannerList => List.unmodifiable(_bannerList);
+  List<FoodCampaignEntity> get foodCampaignList =>
       List.unmodifiable(_foodCampaignList);
-  PopularProduct? get popularItem => _popularProduct;
-  HomeRestaurant? get homeRestaurant => _homeRestaurant;
+  PopularProductEntity? get popularItem => _popularProduct;
+  HomeRestaurantEntity? get homeRestaurant => _homeRestaurant;
 
   bool _isLoadingCategory = false;
   bool _isLoadingBanners = false;

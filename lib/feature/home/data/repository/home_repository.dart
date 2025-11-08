@@ -6,8 +6,10 @@ import 'package:task_09/feature/home/data/model/food_campaign.dart';
 import 'package:task_09/feature/home/data/model/home_banner.dart';
 import 'package:task_09/feature/home/data/model/home_restaurant.dart';
 import 'package:task_09/feature/home/data/model/popular_product.dart';
+import 'package:task_09/feature/home/domain/repository/home_repository_domain.dart';
 
-class HomeRepository {
+class HomeRepository implements HomeRepositoryDomain {
+  @override
   Future<List<Category>> fetchCategories(BuildContext ctx) async {
     final result = await BaseClient.getData(
       endPoint: MyApiUrl.category,
@@ -17,6 +19,7 @@ class HomeRepository {
     return (result as List).map<Category>((e) => Category.fromJson(e)).toList();
   }
 
+  @override
   Future<List<HomeBanner>> fetchBanners(BuildContext ctx) async {
     final result = await BaseClient.getData(
       endPoint: MyApiUrl.banner,
@@ -28,6 +31,7 @@ class HomeRepository {
         .toList();
   }
 
+  @override
   Future<List<FoodCampaign>> fetchFoodCampaigns(BuildContext ctx) async {
     final result = await BaseClient.getData(
       endPoint: MyApiUrl.foodCampaign,
@@ -39,6 +43,7 @@ class HomeRepository {
         .toList();
   }
 
+  @override
   Future<PopularProduct?> fetchPopularProduct(BuildContext ctx) async {
     final result = await BaseClient.getData(
       endPoint: MyApiUrl.popularProduct,
@@ -48,6 +53,7 @@ class HomeRepository {
     return PopularProduct.fromJson(result);
   }
 
+  @override
   Future<HomeRestaurant?> fetchHomeRestaurant({
     required int offset,
     required int limit,

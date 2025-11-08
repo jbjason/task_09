@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/util/my_dimens.dart';
-import 'package:task_09/feature/home/data/model/food_campaign.dart';
+import 'package:task_09/feature/home/domain/entities/food_campaign_entity.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomeFoodCampaign extends StatelessWidget {
@@ -15,26 +15,29 @@ class HomeFoodCampaign extends StatelessWidget {
     final data = Provider.of<HomeProvider>(context);
     final items = data.foodCampaignList;
     return SizedBox(
-      height: context.screenHeight * .13,
-      child: Column(
-        children: [
-          // section title
-          MyDimens().getTitleAndViewAll("Food Campaign", context),
-          // food list
-          Expanded(
-            child: data.isLoadingCampaign
-                ? MyDimens.getLoadingIndication
-                : items.isEmpty
-                ? MyDimens.getNoItemText
-                : ListView.builder(
-                    clipBehavior: Clip.none,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: items.length,
-                    itemBuilder: (context, i) =>
-                        HomeFoodCampaignItem(item: items[i]),
-                  ),
-          ),
-        ],
+      height: context.screenHeight * .15,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 10.h),
+        child: Column(
+          children: [
+            // section title
+            MyDimens().getTitleAndViewAll("Food Campaign", context),
+            // food list
+            Expanded(
+              child: data.isLoadingCampaign
+                  ? MyDimens.getLoadingIndication
+                  : items.isEmpty
+                  ? MyDimens.getNoItemText
+                  : ListView.builder(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: items.length,
+                      itemBuilder: (context, i) =>
+                          HomeFoodCampaignItem(item: items[i]),
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -42,7 +45,7 @@ class HomeFoodCampaign extends StatelessWidget {
 
 class HomeFoodCampaignItem extends StatelessWidget {
   const HomeFoodCampaignItem({super.key, required this.item});
-  final FoodCampaign item;
+  final FoodCampaignEntity item;
   @override
   Widget build(BuildContext context) {
     return Container(
