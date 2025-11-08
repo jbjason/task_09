@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/constants/my_constants.dart';
+import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomeBanners extends StatefulWidget {
   const HomeBanners({super.key});
@@ -17,6 +19,7 @@ class _HomeBannersState extends State<HomeBanners> {
 
   @override
   Widget build(BuildContext context) {
+    final items = Provider.of<HomeProvider>(context).bannerList;
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       height: context.screenHeight * .12,
@@ -28,7 +31,7 @@ class _HomeBannersState extends State<HomeBanners> {
           Expanded(
             child: PageView.builder(
               controller: _controller,
-              itemCount: MyConstants.navItemImages.length,
+              itemCount: items.length,
               onPageChanged: (i) => setState(() => _currentBanner = i),
               itemBuilder: (context, i) => Container(
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
@@ -36,7 +39,7 @@ class _HomeBannersState extends State<HomeBanners> {
                   borderRadius: BorderRadius.circular(12.r),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(
-                      "https://picsum.photos/600/200",
+                      items[i].imageFullUrl, //"https://picsum.photos/600/200",
                     ),
                     fit: BoxFit.fill,
                   ),

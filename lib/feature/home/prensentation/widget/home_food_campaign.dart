@@ -1,20 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:task_09/config/extension/media_query_extension.dart';
 import 'package:task_09/core/constants/my_color.dart';
-import 'package:task_09/core/constants/my_constants.dart';
-import 'package:task_09/core/constants/my_image.dart';
 import 'package:task_09/core/util/my_dimens.dart';
+import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 
 class HomeFoodCampaign extends StatelessWidget {
   const HomeFoodCampaign({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: context.screenHeight * .16,
-      padding: EdgeInsets.symmetric(vertical: 10.h),
+    final items = Provider.of<HomeProvider>(context).foodCampaignList;
+    return SizedBox(
+      height: context.screenHeight * .13,
       //   color: Colors.grey.shade300,
       child: Column(
         children: [
@@ -25,9 +24,9 @@ class HomeFoodCampaign extends StatelessWidget {
             child: ListView.builder(
               clipBehavior: Clip.none,
               scrollDirection: Axis.horizontal,
-              itemCount: MyConstants.navItemImages.length,
+              itemCount: items.length,
               itemBuilder: (context, i) => Container(
-                width: context.screenWidth * .65,
+                width: context.screenWidth * .6,
                 margin: EdgeInsets.only(left: 12.w),
                 padding: EdgeInsets.all(5.h),
                 decoration: BoxDecoration(
@@ -38,42 +37,48 @@ class HomeFoodCampaign extends StatelessWidget {
                 child: Row(
                   spacing: 10.w,
                   children: [
+                    // image
                     Container(
                       width: context.screenWidth * .25,
                       decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: MyColor.gray200,
                         borderRadius: BorderRadius.circular(7.r),
                         image: DecorationImage(
-                          image: AssetImage(MyImage.profilePic),
-                          //  CachedNetworkImageProvider(
-                          //   "https://picsum.photos/200/100",
-                          // ),
+                          // image: AssetImage(MyImage.profilePic),
+                          image: CachedNetworkImageProvider(
+                            items[i]
+                                .imageFullUrl, //"https://picsum.photos/200/100",
+                          ),
                           fit: BoxFit.fill,
                         ),
                       ),
                     ),
+                    // body
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          // title
                           Text(
-                            "Fried Noodles",
+                            items[i].name,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.bodySmall!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
+                          // restaturant
                           Text(
-                            "Mc Donald",
+                            items[i].restaurantName,
                             style: Theme.of(context).textTheme.labelSmall!
                                 .copyWith(
                                   fontSize: 5.sp,
                                   color: MyColor.gray500,
                                 ),
                           ),
+                          // rating & count
                           Text(
-                            "★★★★★",
+                            "${"★" * (items[i].avgRating == 0 ? 5 : items[i].avgRating)} ${items[i].ratingCount}",
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.bodySmall!
                                 .copyWith(
@@ -81,20 +86,27 @@ class HomeFoodCampaign extends StatelessWidget {
                                   color: MyColor.success,
                                 ),
                           ),
+                          // price, discount & add icon
                           Row(
                             children: [
+                              // price - discount
                               Text(
-                                "\$7.56 ",
+                                "\$${items[i].price - items[i].discount}  ",
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context).textTheme.bodySmall!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
+                              // discount
                               Text(
-                                "\$10",
+                                "\$${items[i].discount}",
                                 overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.labelSmall!,
+                                style: Theme.of(context).textTheme.labelSmall!
+                                    .copyWith(
+                                      decoration: TextDecoration.lineThrough,
+                                    ),
                               ),
                               Spacer(),
+                              // add icon
                               Icon(Icons.add),
                             ],
                           ),

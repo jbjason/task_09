@@ -17,8 +17,9 @@ class HomeProvider with ChangeNotifier {
   HomeRestaurant? _homeRestaurant;
 
   List<Category> get categoryList => List.unmodifiable(_categoryList);
-  List<Category> get bannerList => List.unmodifiable(_bannerList);
-  List<Category> get foodCampaignList => List.unmodifiable(_foodCampaignList);
+  List<HomeBanner> get bannerList => List.unmodifiable(_bannerList);
+  List<FoodCampaign> get foodCampaignList =>
+      List.unmodifiable(_foodCampaignList);
   PopularProduct? get popularItem => _popularProduct;
   HomeRestaurant? get homeRestaurant => _homeRestaurant;
   double d = 5.toDouble();
@@ -29,6 +30,8 @@ class HomeProvider with ChangeNotifier {
       _categoryList
         ..clear()
         ..addAll(categories);
+
+      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing categories: $e');
     }
@@ -40,6 +43,7 @@ class HomeProvider with ChangeNotifier {
       _bannerList
         ..clear()
         ..addAll(banners);
+      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Banners: $e');
     }
@@ -51,6 +55,7 @@ class HomeProvider with ChangeNotifier {
       _foodCampaignList
         ..clear()
         ..addAll(foodCampaignList);
+      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Food Campaigns: $e');
     }
@@ -60,6 +65,7 @@ class HomeProvider with ChangeNotifier {
     try {
       final popularProduct = await _repository.fetchPopularProduct(ctx);
       _popularProduct = popularProduct;
+      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Popular Product: $e');
     }
@@ -77,6 +83,7 @@ class HomeProvider with ChangeNotifier {
         ctx: ctx,
       );
       _homeRestaurant = homeRestaurant;
+      notifyListeners();
     } catch (e) {
       debugPrint('Error Parsing Home Restaturant: $e');
     }

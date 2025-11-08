@@ -1,6 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:task_09/core/util/my_dimens.dart';
 import 'package:task_09/feature/home/prensentation/page/home_page.dart';
+import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
 import 'package:task_09/feature/home/prensentation/widget/home_navbar.dart';
 
 class Home extends StatefulWidget {
@@ -17,6 +21,25 @@ class _HomeState extends State<Home> {
     MyDimens().getDemoPage("Profile Page"),
   ];
   int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _initialized();
+  }
+
+  void _initialized() {
+    if (context.mounted) {
+      final data = Provider.of<HomeProvider>(context, listen: false);
+      Future.wait([
+        Future(() => data.fetchCategories(context)),
+        Future(() => data.fetchBanners(context)),
+        Future(() => data.fetchFoodCampaigns(context)),
+        Future(() => data.fetchPopularProduct(context)),
+        Future(() => data.fetchHomeRestaurant(ctx: context)),
+      ]);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
