@@ -18,7 +18,7 @@ class HomeRestaturant extends StatelessWidget {
       children: [
         // section title
         MyDimens().getTitleAndViewAll("Restaurants", context),
-        // food list
+        // restaurant list
         data.isLoadingRestaurant
             ? MyDimens.getLoadingIndication
             : (items == null || items.restaurants.isEmpty)
@@ -56,6 +56,7 @@ class HomeRestaturantItem extends StatelessWidget {
       child: Row(
         spacing: 10.w,
         children: [
+          // image
           Container(
             width: context.screenWidth * .22,
             decoration: BoxDecoration(
@@ -71,6 +72,7 @@ class HomeRestaturantItem extends StatelessWidget {
               ),
             ),
           ),
+          // body
           Expanded(
             child: Row(
               children: [
@@ -79,6 +81,7 @@ class HomeRestaturantItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      // title
                       Text(
                         item.name,
                         maxLines: 2,
@@ -87,6 +90,7 @@ class HomeRestaturantItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      // sub -title
                       Text(
                         item.slug,
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
@@ -94,6 +98,7 @@ class HomeRestaturantItem extends StatelessWidget {
                           color: MyColor.gray500,
                         ),
                       ),
+                      // rating & count
                       Text(
                         "${"★" * (item.avgRating == 0 ? 5 : item.avgRating)} ${item.ratingCount}",
                         overflow: TextOverflow.ellipsis,
@@ -102,6 +107,7 @@ class HomeRestaturantItem extends StatelessWidget {
                           color: MyColor.success,
                         ),
                       ),
+                      // price_start_from
                       Text(
                         " \$${item.priceStartsFrom} - \$",
                         overflow: TextOverflow.ellipsis,
@@ -112,6 +118,7 @@ class HomeRestaturantItem extends StatelessWidget {
                     ],
                   ),
                 ),
+                // favorite & add icon
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

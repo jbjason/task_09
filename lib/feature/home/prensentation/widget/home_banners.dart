@@ -30,6 +30,7 @@ class _HomeBannersState extends State<HomeBanners> {
       child: Column(
         spacing: 5.h,
         children: [
+          // banners
           Expanded(
             child: data.isLoadingBanners
                 ? MyDimens.getLoadingIndication
@@ -37,6 +38,7 @@ class _HomeBannersState extends State<HomeBanners> {
                 ? MyDimens.getNoItemText
                 : _getPageView(items),
           ),
+          // counters
           _getCounter,
         ],
       ),

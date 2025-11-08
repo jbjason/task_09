@@ -128,7 +128,7 @@ class HomeFoodCampaignItem extends StatelessWidget {
                     ),
                     Spacer(),
                     // add icon
-                    Icon(Icons.add),
+                    Icon(Icons.add, size: 18.w),
                   ],
                 ),
               ],
