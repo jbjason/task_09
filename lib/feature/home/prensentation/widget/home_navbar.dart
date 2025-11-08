@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_09/core/constants/my_color.dart';
 import 'package:task_09/core/constants/my_constants.dart';
 import 'package:task_09/feature/home/prensentation/widget/home_navbar_cart_button.dart';
 
@@ -15,7 +16,8 @@ class HomeNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemWidth = 75.w, navBarHeight = 56.h;
-    return SizedBox(
+    return Container(
+      color: MyColor.white,
       height: navBarHeight,
       child: Row(
         children: [

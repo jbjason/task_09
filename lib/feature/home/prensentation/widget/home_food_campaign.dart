@@ -7,19 +7,19 @@ import 'package:task_09/core/constants/my_constants.dart';
 import 'package:task_09/core/constants/my_image.dart';
 import 'package:task_09/core/util/my_dimens.dart';
 
-class HomePopularFoods extends StatelessWidget {
-  const HomePopularFoods({super.key});
+class HomeFoodCampaign extends StatelessWidget {
+  const HomeFoodCampaign({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.screenHeight * .25,
+      height: context.screenHeight * .16,
       padding: EdgeInsets.symmetric(vertical: 10.h),
       //   color: Colors.grey.shade300,
       child: Column(
         children: [
           // section title
-          MyDimens().getTitleAndViewAll("Popular Food Nearby", context),
+          MyDimens().getTitleAndViewAll("Food Campaign", context),
           // food list
           Expanded(
             child: ListView.builder(
@@ -27,38 +27,35 @@ class HomePopularFoods extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: MyConstants.navItemImages.length,
               itemBuilder: (context, i) => Container(
-                width: context.screenWidth * .35,
+                width: context.screenWidth * .65,
                 margin: EdgeInsets.only(left: 12.w),
+                padding: EdgeInsets.all(5.h),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(7.r),
                   boxShadow: MyDimens.getShadow,
                 ),
-                child: Column(
+                child: Row(
+                  spacing: 10.w,
                   children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(7.r),
-                          image: DecorationImage(
-                            image: AssetImage(MyImage.profilePic),
-                            //  CachedNetworkImageProvider(
-                            //   "https://picsum.photos/200/100",
-                            // ),
-                            fit: BoxFit.fill,
-                          ),
+                    Container(
+                      width: context.screenWidth * .25,
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(7.r),
+                        image: DecorationImage(
+                          image: AssetImage(MyImage.profilePic),
+                          //  CachedNetworkImageProvider(
+                          //   "https://picsum.photos/200/100",
+                          // ),
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 5.w,
-                        vertical: 8.h,
-                      ),
+                    Expanded(
                       child: Column(
-                        spacing: 2.h,
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
                             "Fried Noodles",
@@ -75,24 +72,30 @@ class HomePopularFoods extends StatelessWidget {
                                   color: MyColor.gray500,
                                 ),
                           ),
+                          Text(
+                            "★★★★★",
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodySmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: MyColor.success,
+                                ),
+                          ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "\$7.56",
+                                "\$7.56 ",
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context).textTheme.bodySmall!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                "★ 4.7",
+                                "\$10",
                                 overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.bodySmall!
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: MyColor.success,
-                                    ),
+                                style: Theme.of(context).textTheme.labelSmall!,
                               ),
+                              Spacer(),
+                              Icon(Icons.add),
                             ],
                           ),
                         ],
