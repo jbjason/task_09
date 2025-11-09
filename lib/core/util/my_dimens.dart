@@ -44,17 +44,20 @@ class MyDimens {
 
   static Center get getNoItemText => const Center(
     child: SizedBox(
-      height: 150,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.inbox, size: 80, color: Colors.grey),
-          SizedBox(height: 16),
-          Text(
-            'No data found..',
-            style: TextStyle(fontSize: 18, color: Colors.grey),
-          ),
-        ],
+      height: 800,
+      width: 80,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.inbox, size: 80, color: Colors.grey),
+            SizedBox(height: 16),
+            Text(
+              'No data found..',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+          ],
+        ),
       ),
     ),
   );

@@ -25,7 +25,7 @@ class _HomeBannersState extends State<HomeBanners> {
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       height: context.screenHeight * .12,
-      width: double.infinity,
+      width: context.screenWidth,
       child: Column(
         spacing: 5.h,
         children: [
