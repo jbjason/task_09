@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:task_09/config/theme/app_theme.dart';
+import 'package:task_09/feature/home/data/data_sources/home_data_source.dart';
 import 'package:task_09/feature/home/data/repository/home_repository.dart';
 import 'package:task_09/feature/home/prensentation/page/home.dart';
 import 'package:task_09/feature/home/prensentation/provider/home_provider.dart';
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (context, child) => MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => HomeProvider(HomeRepository())),
+          ChangeNotifierProvider(
+            create: (_) =>
+                HomeProvider(HomeRepository(HomeRemoteDataSourceImpl())),
+          ),
         ],
         child: MaterialApp(
           title: 'Task 09',
